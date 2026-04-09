@@ -1,59 +1,92 @@
-# AngularCategoryApp
+# 📦 Angular Category App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.5.
+Aplicación desarrollada en Angular para la gestión de categorías internas, como parte de una prueba técnica frontend.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🚀 Funcionalidades
+
+* Listado de categorías
+* Creación y edición
+* Eliminación con confirmación
+* Cambio de estado (activo / inactivo)
+* Búsqueda global
+
+---
+
+## 🎯 Experiencia de usuario
+
+* Notificaciones con Toast
+* Confirmación de acciones críticas
+* Estado vacío (empty state)
+* Estado de carga (loading)
+* Manejo básico de errores
+
+---
+
+## 🧱 Arquitectura
+
+Se implementó una **arquitectura hexagonal (Ports & Adapters)**:
+
+* `core`: modelos e interfaces
+* `application`: lógica de negocio (facade)
+* `infrastructure`: implementación (mock)
+* `features`: UI
+
+Esto permite desacoplar la lógica del backend y facilita escalar a una API real.
+
+---
+
+## 🔄 Manejo de datos
+
+Se utilizó un repositorio mock con `BehaviorSubject` para simular un flujo reactivo:
+
+* Actualización automática de la UI
+* Simulación de backend
+* Fácil migración a REST
+
+---
+
+## 🧪 Pruebas
+
+Se implementaron pruebas unitarias enfocadas en la capa de facade, validando la interacción con el repositorio y el flujo de datos.
+
+---
+
+## ⚙️ Instalación
 
 ```bash
+npm install
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Ir a:
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+http://localhost:4200
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## 🧠 Decisiones técnicas
 
-## Building
+* Uso de PrimeNG para UI consistente
+* Arquitectura hexagonal para desacoplamiento
+* Reactive Forms para control de validaciones
+* Validadores personalizados para lógica de negocio
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+## 🔮 Mejoras futuras
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+* Integración con API REST
+* Manejo global de estado
+* Pruebas unitarias
+* Guards e interceptors
+* Paginación backend
 
-## Running unit tests
+---
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## 👨‍💻 Autor
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Camilo Ramirez
