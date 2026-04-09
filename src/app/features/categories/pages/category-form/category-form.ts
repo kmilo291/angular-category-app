@@ -51,25 +51,22 @@ export class CategoryForm implements OnInit {
     });
 
     const id = this.route.snapshot.paramMap.get('id');
+    this.isEdit = !!id;
+    this.originalCode = id || '';
 
-    if (id) {
-      this.isEdit = true;
+    this.facade.categories$.subscribe(categories => {
 
-      this.facade.categories$.subscribe(categories => {
+      // guardar códigos existentes
+      this.existingCodes = categories.map(c => c.code);
+
+      // si es edición, cargar datos
+      if (this.isEdit && id) {
         const category = categories.find(c => c.code === id);
         if (category) {
           this.form.patchValue(category);
         }
-      });
-    }
-
-    this.facade.categories$.subscribe(categories => {
-      this.existingCodes = categories.map(c => c.code);
-
-      if (this.isEdit) {
-        const id = this.route.snapshot.paramMap.get('id');
-        this.originalCode = id || '';
       }
+
     });
   }
 
