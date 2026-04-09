@@ -1,0 +1,118 @@
+<div class="card">
+
+  <p-table
+    #dt
+    [value]="categories"
+    dataKey="code"
+    [rows]="5"
+    [paginator]="true"
+    [loading]="loading"
+    [globalFilterFields]="['code','name','description','status']"
+    [tableStyle]="{ 'min-width': '60rem' }"
+  >
+
+                 <ng-template pTemplate="caption">
+                    <div class="table-header">
+                        <p-button label="Nuevo" [outlined]="true" icon="pi pi-plus"  (click)="onCreate()" />
+
+                        <div class="table-header-right">
+                          <p-iconfield iconPosition="left" class="ml-auto">
+                              <p-inputicon>
+                                  <i class="pi pi-search"></i>
+                              </p-inputicon>
+                              <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Buscar" />
+                          </p-iconfield>
+                        </div>
+                    </div>
+                </ng-template>
+
+    <!-- HEADER -->
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Código</th>
+        <th>Nombre</th>
+        <th>Estado</th>
+        <th style="width: 120px;">Acciones</th>
+      </tr>
+
+
+    </ng-template>
+
+    <!-- BODY -->
+    <ng-template pTemplate="body" let-category>
+      <tr>
+        <td>{{ category.code }}</td>
+
+        <td>
+          <strong>{{ category.name }}</strong>
+          <div style="font-size: 0.8rem; color: #777;">
+            {{ category.description || 'Sin descripción' }}
+          </div>
+        </td>
+
+        <td>
+          <p-tag
+            [value]="category.status ? 'Activo' : 'Inactivo'"
+            [severity]="category.status ? 'success' : 'danger'"
+          ></p-tag>
+        </td>
+
+        <td>
+          <div class="actions">
+
+            <button
+              pButton
+              icon="pi pi-pencil"
+              class="p-button-text p-button-sm"
+              (click)="onEdit(category.code)"
+            ></button>
+
+            <button
+              pButton
+              icon="pi pi-refresh"
+              class="p-button-text p-button-sm"
+              (click)="onToggle(category.code)"
+            ></button>
+
+            <button
+              pButton
+              icon="pi pi-trash"
+              class="p-button-text p-button-sm p-button-danger"
+              (click)="onDelete(category.code)"
+            ></button>
+
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+    <!-- EMPTY -->
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="4">
+          <div class="empty-state">
+
+            <i class="pi pi-folder-open empty-icon"></i>
+
+            <h4>No hay categorías</h4>
+
+            <p>
+              Aún no has creado ninguna categoría.
+              Puedes comenzar creando una nueva.
+            </p>
+
+            <button
+              pButton
+              label="Crear categoría"
+              icon="pi pi-plus"
+              (click)="onCreate()"
+            ></button>
+
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+  </p-table>
+
+</div>

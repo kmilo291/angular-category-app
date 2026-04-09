@@ -1,0 +1,106 @@
+<div class="form-card">
+
+  <h2>{{ isEdit ? 'Editar' : 'Crear' }} Categoría</h2>
+
+  <form *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container">
+
+
+
+    <!-- Código -->
+    <div class="form-group">
+      <label for="code">Código</label>
+
+      <input
+        pInputText
+        id="code"
+        formControlName="code"
+        class="full-width"
+      />
+
+      <small class="help-text">
+        Identificador único de la categoría
+      </small>
+
+      <small class="error"
+        *ngIf="form.get('code')?.hasError('required') && form.get('code')?.touched">
+        Código es obligatorio
+      </small>
+
+      <small class="error"
+        *ngIf="
+          !form.get('code')?.hasError('required') &&
+          form.get('code')?.hasError('codeExists') &&
+          form.get('code')?.touched
+        ">
+        El código ya existe
+      </small>
+    </div>
+
+    <!-- Nombre -->
+    <div class="form-group">
+      <label for="name">Nombre</label>
+
+      <input
+        pInputText
+        id="name"
+        formControlName="name"
+        class="full-width"
+      />
+
+      <small class="help-text">
+        Nombre visible para los usuarios
+      </small>
+
+      <small class="error"
+        *ngIf="form.get('name')?.hasError('required') && form.get('name')?.touched">
+        Nombre es obligatorio
+      </small>
+    </div>
+
+    <!-- Descripción -->
+    <div class="form-group">
+      <label for="description">Descripción</label>
+
+      <input
+        pInputText
+        id="description"
+        formControlName="description"
+        class="full-width"
+      />
+
+      <small class="help-text">
+        Campo opcional para más detalles
+      </small>
+    </div>
+
+    <!-- Estado -->
+    <div class="form-group-inline">
+      <p-checkbox formControlName="status" binary="true"></p-checkbox>
+      <label>Activo</label>
+    </div>
+
+    <!-- BOTÓN -->
+    <div class="form-actions">
+
+      <button
+        pButton
+        label="Atras"
+        severity="danger"
+        icon="pi pi-arrow-left"
+        (click)="onBack()">
+      </button>
+
+      &nbsp;
+
+      <button
+        pButton
+        type="submit"
+        label="Guardar"
+        icon="pi pi-check"
+        [disabled]="form.invalid">
+      </button>
+    </div>
+
+  </form>
+
+</div>
